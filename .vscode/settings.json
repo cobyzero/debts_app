@@ -1,3 +1,7 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.24.0"
+  "dart.flutterSdkPath": ".fvm/versions/3.24.0",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
 }
