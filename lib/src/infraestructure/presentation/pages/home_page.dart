@@ -1,3 +1,6 @@
+import 'package:debts_app/core/barrels/packages_barrel.dart';
+import 'package:debts_app/core/barrels/utils_barrel.dart';
+import 'package:debts_app/core/barrels/widgets_barrel.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,6 +8,82 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Palette.black,
+        title: const Texts.normal(
+          'Deudas',
+          fontSize: 17,
+          color: Palette.white,
+        ),
+      ),
+      backgroundColor: Palette.black,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              expandedHeight: 35.h,
+              backgroundColor: Palette.black,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: [
+                    const Texts.bold(
+                      'S/ 300.00',
+                      fontSize: 23,
+                      color: Palette.white,
+                    ).only(bottom: 3.h, top: 3.h),
+                    const ContactsWidget(),
+                  ],
+                ).symmetric(horizontal: 5.w),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                  vertical: 2.h,
+                ),
+                decoration: BoxDecoration(
+                  color: Palette.blackGrey.withOpacity(.6),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Texts.bold(
+                      "Historial de deudas",
+                      fontSize: 18,
+                      color: Palette.white,
+                    ).only(bottom: 3.h, top: 2.h),
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 2.h,
+                      ),
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return TransactionsWidget();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
+                child: const Texts.bold(
+                  'No hay más contenido',
+                  color: Palette.white,
+                ).symmetric(vertical: 3.h),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
