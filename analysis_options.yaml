@@ -4,7 +4,7 @@ analyzer:
     strong-mode:
         # https://www.dartlang.org/guides/language/analysis-options#enabling-additional-type-checks
     exclude:
-        - "**/*.g.dart"
+        - "**/*_model.dart"
         - "**/*.gr.dart"
         - "**/*.freezed.dart"
         - lib/**/*.g.dart
