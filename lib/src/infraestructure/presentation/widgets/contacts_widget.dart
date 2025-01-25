@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:debts_app/core/barrels/packages_barrel.dart';
 import 'package:debts_app/core/barrels/utils_barrel.dart';
 import 'package:debts_app/src/infraestructure/blocs/contact_bloc/contact_bloc.dart';
@@ -64,8 +62,8 @@ class ContactsWidget extends StatelessWidget {
                             CircleAvatar(
                               backgroundColor: Palette.white,
                               radius: 20.sp,
-                              backgroundImage: FileImage(
-                                File(state.contacts[index].photoUrl),
+                              backgroundImage: MemoryImage(
+                                state.contacts[index].photoUrl,
                               ),
                             ).only(bottom: 1.h),
                             Texts.normal(state.contacts[index].name),

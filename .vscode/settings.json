@@ -4,4 +4,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
+  "[dart]": {
+    "editor.inlayHints.enabled": "off"
+  }
 }

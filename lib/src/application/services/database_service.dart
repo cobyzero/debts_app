@@ -13,7 +13,7 @@ class DatabaseService {
           'CREATE TABLE debts(id INTEGER PRIMARY KEY, contactId INTEGER, description TEXT, amount DOUBLE, date TEXT)',
         );
         return db.execute(
-          'CREATE TABLE contacts(id INTEGER PRIMARY KEY, name TEXT, photoUrl TEXT)',
+          'CREATE TABLE contacts(id INTEGER PRIMARY KEY, name TEXT, photoUrl BLOB NOT NULL)',
         );
       },
       version: 1,

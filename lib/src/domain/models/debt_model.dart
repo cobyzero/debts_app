@@ -29,11 +29,11 @@ class DebtModel {
 
   factory DebtModel.fromJson(Map<String, dynamic> json) {
     return DebtModel(
-      id: json['id'],
-      contactId: json['contactId'],
-      description: json['description'],
-      amount: json['amount'],
-      date: DateTime.parse(json['date']),
+      id: json['id'] as int,
+      contactId: json['contactId'] as int,
+      description: json['description'] as String,
+      amount: json['amount'] as double,
+      date: DateTime.parse(json['date'] as String),
     );
   }
 }

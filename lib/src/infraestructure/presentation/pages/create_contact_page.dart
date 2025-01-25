@@ -69,14 +69,17 @@ class _CreateContactPageState extends State<CreateContactPage> {
   }
 
   Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = image;
-    });
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = pickedFile;
+      });
+    }
   }
 
-  void _saveContact() {
+  Future<void> _saveContact() async {
     if (_image == null || _nameController.text.isEmpty) {
       context.toast("Todos los campos son requeridos");
       return;
@@ -84,9 +87,11 @@ class _CreateContactPageState extends State<CreateContactPage> {
     final contact = ContactModel(
       id: 0,
       name: _nameController.text,
-      photoUrl: _image!.path,
+      photoUrl: await _image!.readAsBytes(),
     );
+    // ignore: use_build_context_synchronously
     context.read<ContactBloc>().add(AddContactEvent(contact: contact));
+    // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
 }

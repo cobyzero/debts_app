@@ -1,7 +1,9 @@
+import 'dart:typed_data';
+
 class ContactModel {
   final String name;
   final int id;
-  final String photoUrl;
+  final Uint8List photoUrl;
 
   ContactModel({
     required this.name,
@@ -11,9 +13,9 @@ class ContactModel {
 
   factory ContactModel.fromJson(Map<String, dynamic> json) {
     return ContactModel(
-      name: json['name'],
-      id: json['id'],
-      photoUrl: json['photoUrl'],
+      name: json['name'] as String,
+      id: json['id'] as int,
+      photoUrl: json['photoUrl'] as Uint8List,
     );
   }
 
