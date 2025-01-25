@@ -10,20 +10,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Palette.black,
+        backgroundColor: Palette.background,
         title: const Texts.normal(
           'Deudas',
           fontSize: 17,
           color: Palette.white,
         ),
       ),
-      backgroundColor: Palette.black,
+      backgroundColor: Palette.background,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
               expandedHeight: 35.h,
-              backgroundColor: Palette.black,
+              backgroundColor: Palette.background,
               flexibleSpace: FlexibleSpaceBar(
                 background: Column(
                   children: [
@@ -43,10 +43,10 @@ class HomePage extends StatelessWidget {
                   horizontal: 5.w,
                   vertical: 2.h,
                 ),
-                decoration: BoxDecoration(
-                  color: Palette.blackGrey.withOpacity(.6),
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(30),
+                decoration: const BoxDecoration(
+                  color: Palette.black,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(BORDER_RADIUS),
                   ),
                 ),
                 child: Column(
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                       ),
                       itemCount: 20,
                       itemBuilder: (context, index) {
-                        return TransactionsWidget();
+                        return const TransactionsWidget();
                       },
                     ),
                   ],

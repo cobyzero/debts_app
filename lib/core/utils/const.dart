@@ -1,0 +1,1 @@
+const BORDER_RADIUS = 30.0;

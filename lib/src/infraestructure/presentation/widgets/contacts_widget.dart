@@ -1,17 +1,18 @@
 import 'package:debts_app/core/barrels/packages_barrel.dart';
 import 'package:debts_app/core/barrels/utils_barrel.dart';
+import 'package:debts_app/src/infraestructure/presentation/pages/create_contact_page.dart';
 import 'package:flutter/material.dart';
 
 class ContactsWidget extends StatelessWidget {
   const ContactsWidget({super.key});
-
+  final int maxContacts = 5;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 3.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(BORDER_RADIUS),
         gradient: const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -27,8 +28,26 @@ class ContactsWidget extends StatelessWidget {
             height: 10.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: maxContacts + 1,
               itemBuilder: (context, index) {
+                if (index == maxContacts) {
+                  return GestureDetector(
+                    onTap: () => onAddContact(context),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Palette.black,
+                          radius: 20.sp,
+                          child: const Icon(
+                            Icons.add,
+                            color: Palette.white,
+                          ),
+                        ).only(bottom: 1.h),
+                        const Texts.normal("Agregar"),
+                      ],
+                    ).symmetric(horizontal: 2.w),
+                  );
+                }
                 return Column(
                   children: [
                     CircleAvatar(
@@ -43,6 +62,17 @@ class ContactsWidget extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  void onAddContact(BuildContext context) {
+    showBottomSheet(
+      context: context,
+      backgroundColor: Palette.black,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(BORDER_RADIUS),
+      ),
+      builder: (context) => const CreateContactPage(),
     );
   }
 }
