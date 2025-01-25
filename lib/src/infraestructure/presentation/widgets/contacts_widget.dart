@@ -1,5 +1,6 @@
 import 'package:debts_app/core/barrels/packages_barrel.dart';
 import 'package:debts_app/core/barrels/utils_barrel.dart';
+import 'package:debts_app/src/infraestructure/presentation/pages/add_debt_page.dart';
 import 'package:debts_app/src/infraestructure/presentation/pages/create_contact_page.dart';
 import 'package:flutter/material.dart';
 
@@ -48,15 +49,18 @@ class ContactsWidget extends StatelessWidget {
                     ).symmetric(horizontal: 2.w),
                   );
                 }
-                return Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Palette.white,
-                      radius: 20.sp,
-                    ).only(bottom: 1.h),
-                    const Texts.normal("John Doe"),
-                  ],
-                ).symmetric(horizontal: 2.w).only(left: index == 0 ? 5.w : 0);
+                return GestureDetector(
+                  onTap: () => onAddDebt(context),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Palette.white,
+                        radius: 20.sp,
+                      ).only(bottom: 1.h),
+                      const Texts.normal("John Doe"),
+                    ],
+                  ).symmetric(horizontal: 2.w).only(left: index == 0 ? 5.w : 0),
+                );
               },
             ),
           )
@@ -73,6 +77,17 @@ class ContactsWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(BORDER_RADIUS),
       ),
       builder: (context) => const CreateContactPage(),
+    );
+  }
+
+  void onAddDebt(BuildContext context) {
+    showBottomSheet(
+      context: context,
+      backgroundColor: Palette.black,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(BORDER_RADIUS),
+      ),
+      builder: (context) => const AddDebtPage(),
     );
   }
 }
